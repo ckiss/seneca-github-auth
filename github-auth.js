@@ -5,8 +5,6 @@ module.exports = function (options) {
 
   var seneca = this
 
-  console.log(options)
-
   var authPlugin = new GitHubStrategy({
       clientID:       options.clientID,
       clientSecret:   options.clientSecret,
