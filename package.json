@@ -1,6 +1,6 @@
 {
   "name": "seneca-github-auth",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "github auth plugin for seneca-auth",
   "main": "github-auth.js",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/nherment/seneca-github-auth",
   "dependencies": {
-    "passport-github": "^0.1.5"
+    "passport-github": "0.1.5"
   },
   "peerDependencies": {
     "seneca-auth": "*",
