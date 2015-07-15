@@ -18,8 +18,8 @@ module.exports = function (options) {
     function (accessToken, refreshToken, profile, done) {
       seneca.act(
         {
-          role: service,
-          cmd: 'prepareLoginData',
+          role: 'auth',
+          prepare: 'github_login_data',
           accessToken: accessToken,
           refreshToken: refreshToken,
           profile: profile
@@ -67,7 +67,7 @@ module.exports = function (options) {
     cb(null, data)
   }
 
-  seneca.add({role: service, cmd: 'prepareLoginData'}, prepareLoginData)
+  seneca.add({role: 'auth', prepare: 'github_login_data'}, prepareLoginData)
 
   seneca.act({role: 'auth', cmd: 'register_service', service: service, plugin: authPlugin, conf: options})
 

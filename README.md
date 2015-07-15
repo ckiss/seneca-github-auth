@@ -44,9 +44,9 @@ Note: serviceParams can be used to pass any other parameter to the passport gith
 
 There is provided a default seneca action that will prepare user data to a more convenient structure.
 If this data structure is not matching the expected user data structure used by your application, you can overwrite the
-seneca action and implement your own prepareLoginData action.
+seneca action and implement your own github_login_data action.
 
- - {role: 'github', cmd: 'prepareLoginData'}
+ - {role: 'auth', prepare: 'github_login_data'}
 
 The JSON object provided for this actions contains following data from Github login:
  - accessToken
