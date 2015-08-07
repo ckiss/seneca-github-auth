@@ -34,7 +34,7 @@ module.exports = function (options) {
 
     var data = {
       identifier: '' + profile.id,
-      nick: profile.displayName,
+      nick: profile.username,
       username: profile.username,
       credentials: {
         access: accessToken,
@@ -45,15 +45,17 @@ module.exports = function (options) {
     };
 
     data = _.extend({}, data, profile)
-    if (data.emails && data.emails.length > 0){
+    if (data.emails && data.emails.length > 0 && data.emails[0].value){
       data.email = data.emails[0].value
+      data.nick = data.email
     }
     if (data.name && _.isObject(data.name)){
       data.firstName = data.name.givenName
       data.lastName = data.name.familyName
+      data.name = data.name || (data.firstName + ' ' + data.lastName)
       delete data.name
     }
-    data.name = data.name || (data.firstName + ' ' + data.lastName)
+    data.name = data.name || data.displayName
 
     data[ service + '_id' ] = data.identifier
 
