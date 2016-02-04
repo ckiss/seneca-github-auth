@@ -3,14 +3,13 @@ var GitHubStrategy = require('passport-github').Strategy
 var _ = require('lodash')
 
 module.exports = function (options) {
-
   var seneca = this
   var service = 'github'
 
   var params = {
-    clientID:       options.clientID,
-    clientSecret:   options.clientSecret,
-    callbackURL:    options.urlhost + (options.callbackUrl || '/auth/github/callback')
+    clientID: options.clientID,
+    clientSecret: options.clientSecret,
+    callbackURL: options.urlhost + (options.callbackUrl || '/auth/github/callback')
   }
   params = _.extend(params, options.serviceParams || {})
 
@@ -27,7 +26,7 @@ module.exports = function (options) {
     }
   )
 
-  var prepareLoginData = function(args, cb){
+  var prepareLoginData = function (args, cb) {
     var accessToken = args.accessToken
     var refreshToken = args.refreshToken
     var profile = args.profile
@@ -42,14 +41,14 @@ module.exports = function (options) {
       },
       userdata: profile,
       when: new Date().toISOString()
-    };
+    }
 
     data = _.extend({}, data, profile)
-    if (data.emails && data.emails.length > 0 && data.emails[0].value){
+    if (data.emails && data.emails.length > 0 && data.emails[0].value) {
       data.email = data.emails[0].value
       data.nick = data.email
     }
-    if (data.name && _.isObject(data.name)){
+    if (data.name && _.isObject(data.name)) {
       data.firstName = data.name.givenName
       data.lastName = data.name.familyName
       data.name = data.name || (data.firstName + ' ' + data.lastName)
